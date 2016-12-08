@@ -9,8 +9,6 @@
 #include <ArduinoJson.h>
 #include <FS.h>
 #include <ESPMetRED.h>
-#include <math.h>
-#include <DHT.h>
 
 const char* MQTT_PUBLISH_TOPIC = "ESPMetRED/OUT";
 const char* MQTT_SUBSCRIBE_TOPIC = "ESPMetRED/IN";
