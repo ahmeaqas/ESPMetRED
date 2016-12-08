@@ -60,7 +60,7 @@ void loop() {
     if(((client.Time() > (client.Sunset() + ON_OVER_RIDE)) || (client.Time() < (client.Sunrise() + OFF_OVER_RIDE))) && (((state == 1) && (client.getOverride(12) == 3)) || ((state == 0) && (client.getOverride(12) == 0))))
     {
       client.setOverride(12, 3); // Release over-ride lock on certain pin (Pin_Number, Over_ride_value)
-      client.WriteGPIO(12, 0); // Switch pin-12 to LOW (Pin, State)
+      client.WriteGPIO(12, 0); // Switch pin-12 to LOW (Pin, State) and store it's new state in Flash memory
       Serial.println("RELAY TURNED ON");
     }
   } 
