@@ -1,7 +1,7 @@
 /*
   ESPMetRED.cpp - A blend of ESP8266 MQTT and Node-Red.
   Waqas Ahmed
-  https://espmetred.hobbytronics.com.pk
+  http://espmetred.hobbytronics.com.pk
 */
 
 #include <Arduino.h>
