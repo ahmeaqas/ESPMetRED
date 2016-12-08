@@ -12,9 +12,9 @@
 #include <math.h>
 #include <DHT.h>
 
-const char* MQTT_PUBLISH_TOPIC = "LivingRST/OUT";
-const char* MQTT_SUBSCRIBE_TOPIC = "LivingRST/IN";
-const char* CLIENT_ID = "LivingRST";
+const char* MQTT_PUBLISH_TOPIC = "ESPMetRED/OUT";
+const char* MQTT_SUBSCRIBE_TOPIC = "ESPMetRED/IN";
+const char* CLIENT_ID = "ESPMetRED";
 const char* WIFI_SSID = "Ahmed";
 const char* WIFI_PASSWORD = "Password";
 const char* MQTT_SERVER = "192.168.0.30";
