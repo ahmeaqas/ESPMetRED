@@ -1,7 +1,7 @@
 /*
   ESPMetRED.h - A blend of ESP8266 MQTT and Node-Red.
   Waqas Ahmed
-  https://espmetred.hobbytronics.com.pk
+  http://espmetred.hobbytronics.com.pk
 */
 
 #ifndef ESPMetRED_h
