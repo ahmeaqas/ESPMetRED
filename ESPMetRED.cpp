@@ -95,15 +95,7 @@ void ESPMetRED::keepalive()
 		Time_Log = millis();
 		WriteSPIFFS("Time", _Time);
 	}
-	// if ((WiFi.status() == WL_CONNECTED) && (!OTA_Begin))
-	// {
-		// OTA_Begin = true;
-		// OTA();
-	// }
-	// if ((WiFi.status() == WL_CONNECTED) && (OTA_Begin))
-	// {
-		// ArduinoOTA.handle();
-	// }
+	
 	MQTTClient.loop();
 	Timer();
 	
