@@ -32,7 +32,7 @@ void setup() {
   int state = client.ReadSPIFFS("12"); // get previously stored state of pin-12 in flash memory
   digitalWrite(12, state); // drives pin-12 to previous state
 
-  client.OverRide(); // search in Flash memory if pin state was over-riden manually
+  client.OverRide(12); // search in Flash memory if pin state was over-riden manually
   //If over-ride = 0, It means pin was pulled LOW against the program schedule
   //If over-ride = 1, It means pin was pushed HIGH against the program schedule
   //If over-ride = 3, There is no over-ride associated with pin
