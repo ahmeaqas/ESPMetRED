@@ -14,10 +14,6 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 #include <FS.h>
-// #include <ESP8266mDNS.h>
-// #include <WiFiUdp.h>
-// #include <ArduinoOTA.h>
-
 
 #ifdef ESP8266
 #include <functional>
