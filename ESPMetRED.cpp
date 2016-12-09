@@ -27,7 +27,6 @@ ESPMetRED::ESPMetRED()
 	MQTTClient.setServer(MQTT_SERVER, 1883);
 	MQTTClient.setCallback([this] (char* topic, byte* payload, unsigned int length) { this->callback(topic, payload, length); });
 	Serial.println("ESP8266 started");
-	// OTA();
 	NTP = ReadSPIFFS("Time");
 	Serial.print("Time: ");
 	Serial.println(NTP);
@@ -58,7 +57,6 @@ boolean ESPMetRED::WiFiScanner()
 			Serial.println("WiFi Network Available");
 			return true;
 		}
-		//delay(1);
 	}
 	Serial.println("WiFi Network NOT Available");
 	return false;
