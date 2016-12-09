@@ -84,7 +84,7 @@ public:
 	boolean WriteSPIFFS(String Object, long Value);
 	boolean WriteGPIO(int Pin, int Value);
 	
-	boolean OverRide();
+	boolean OverRide(int Pin);
 	void setOverride(int Pin, int over_ride);
 	int getOverride(int Pin);
 };
