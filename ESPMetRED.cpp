@@ -454,6 +454,7 @@ boolean ESPMetRED::OverRide()
 		Serial.println("Fetch OverRide [Some (or All) values updated to database]");
 		return true;
 	}
+	delay(1000);
 }
 
 void ESPMetRED::setOverride(int Pin, int over_ride)
