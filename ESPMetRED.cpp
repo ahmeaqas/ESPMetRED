@@ -257,32 +257,6 @@ void ESPMetRED::Publish(const char* topic, String message)
 	MQTTClient.publish(topic, message.c_str());
 }
 
-void ESPMetRED::OTA()
-{
-	// ArduinoOTA.setPort(8266);
-	// ArduinoOTA.setHostname(CLIENT_ID);
-	// ArduinoOTA.setPassword((const char *)MQTT_PASSWORD);
-	
-	// ArduinoOTA.onStart([]() {
-		// Serial.println("Start");
-	// });
-	// ArduinoOTA.onEnd([]() {
-		// Serial.println("\nEnd");
-	// });
-	// ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-		// Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
-	// });
-	// ArduinoOTA.onError([](ota_error_t error) {
-		// Serial.printf("Error[%u]: ", error);
-		// if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
-		// else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
-		// else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
-		// else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
-		// else if (error == OTA_END_ERROR) Serial.println("End Failed");
-	// });
-	// ArduinoOTA.begin();
-}
-
 String ESPMetRED::networkIP()
 {
 	String LocalIP;
@@ -408,53 +382,16 @@ boolean ESPMetRED::WriteGPIO(int Pin, int Value)
 	}
 }
 
-boolean ESPMetRED::OverRide()
+boolean ESPMetRED::OverRide(int Pin)
 {
-	File databaseFile = SPIFFS.open("/db.json", "r");
-	if (!databaseFile) {
-		Serial.println("Failed to open database file");
-		return false;
-	}
-	size_t size = databaseFile.size();
-	if (size > 1024) {
-		Serial.println("database file size is too large");
-		return false;
-	}
-	std::unique_ptr<char[]> buf(new char[size]);
-	databaseFile.readBytes(buf.get(), size);
-
-	StaticJsonBuffer<500> jsonBuffer;
-	JsonObject& database = jsonBuffer.parseObject(buf.get());
-	if (!database.success()) {
-		Serial.println("Failed to parse database file");
-		return false;
-	}
-	boolean database_changed = false;
-	for (int i=0; i<10; i++)
+	String Object = "OverRide" + String(Pin);
+	int state = ReadSPIFFS(Object);
+	if (state == 99)
 	{
-		String Object = "OverRide" + String(gpio_definition[i]);
-		if (database.containsKey(Object)) {
-			int Pin = gpio_definition[i];
-			gpio_override[Pin] = database[Object];
-		} else {
-			gpio_override[i] = 3;
-			database[Object] = 3;
-			database_changed = true;
-		}
+		state = 3;
+		delay(100);
 	}
-	if (!database_changed)
-	{
-		Serial.println("Fetch OverRide [OK]");
-		return true;
-	}
-	else
-	{
-		File databaseFile = SPIFFS.open("/db.json", "w");
-		database.printTo(databaseFile);
-		Serial.println("Fetch OverRide [Some (or All) values updated to database]");
-		return true;
-	}
-	delay(1000);
+	gpio_override[Pin] = state;
 }
 
 void ESPMetRED::setOverride(int Pin, int over_ride)
