@@ -44,7 +44,7 @@ void loop() {
   if (((millis() - THRESHOLD) > 60000) || (THRESHOLD == 0)) // Perform activity every minute
   {
     THRESHOLD = millis();
-
+    int state = digitalRead(12); // get the current state of pin
     // Condition below: It will turn the relay OFF (Normally Closed) on Sunrise plus-minus over-ride time
     if((client.Time() > (client.Sunrise() + OFF_OVER_RIDE)) && (client.Time() < (client.Sunset() + ON_OVER_RIDE)) && (((state == 0) && (client.getOverride(12) == 3)) || ((state == 1) && (client.getOverride(12) == 1))))
     {
