@@ -358,7 +358,7 @@ boolean ESPMetRED::WriteGPIO(int Pin, int Value)
 		else
 		{
 			digitalWrite(Pin, Value);
-			String printDebug = String(Pin) + " is set to " + String(Value);
+			String printDebug = String(CLIENT_ID) + " [GPIO " + String(Pin) + " " + String(Value) + "]";
 			Publish("debug", printDebug);
 			WriteSPIFFS(String(Pin), Value);
 			Serial.println(printDebug);
