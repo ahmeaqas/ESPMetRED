@@ -11,7 +11,7 @@ This library can be used to control ESP8266 nodes from Node-Red. Just burn Examp
 - Auto connect to WiFi or MQTT server in case of failure
 - Sudo Timer for Timely operations, update Sunrise or Sunset data and preserve it in flash memory
 - Save variables in Flash memory
-- Retrieve variables from Flash memory on booting ESP8266
+- Retrieve variables from Flash memory
 - Preserve and restore GPIO state i.e. HIGH or LOW
 - Over the Air (OTA) update
 - More are comming soon!!
