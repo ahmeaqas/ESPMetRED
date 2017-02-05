@@ -32,18 +32,16 @@ ESPMetRED::ESPMetRED()
 	Serial.println(NTP);
 }
 
-boolean ESPMetRED::joinWiFi()
+void ESPMetRED::joinWiFi()
 {
 	boolean access_point_check = WiFiScanner();
 	if ((access_point_check) && (WiFi.status() != WL_CONNECTED))
 	{
 		Serial.println("Connecting to WiFi Access Point");
 		WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-		return false;
 	} else if ((access_point_check) && (WiFi.status() == WL_CONNECTED))
 	{
 		Serial.println("WiFi connected");
-		return true;
 	}
 }
 
@@ -64,7 +62,7 @@ boolean ESPMetRED::WiFiScanner()
 	return false;
 }
 
-boolean ESPMetRED::joinMqTT()
+void ESPMetRED::joinMqTT()
 {
 	MQTTClient.connect(CLIENT_ID, MQTT_USER, MQTT_PASSWORD);
 	
@@ -73,16 +71,14 @@ boolean ESPMetRED::joinMqTT()
 		MQTTClient.subscribe("ntp/OUT");
 		Publish("debug", String(CLIENT_ID) + " [LOGGED IN]");
 		Publish("ntp/IN", JsonString(String(MQTT_SUBSCRIBE_TOPIC), ""));
-		return true;
 	} else {
 		Serial.print("Failed to connect to mqtt server, rc=");
 		Serial.print(MQTTClient.state());
 		Serial.println("");
-		return false;
 	}
 }
 
-boolean ESPMetRED::keepalive()
+void ESPMetRED::keepalive()
 {
 	if (((millis() - connection_watchdog) > 12000UL) && (WiFi.status() != WL_CONNECTED))
 	{
@@ -110,7 +106,6 @@ boolean ESPMetRED::keepalive()
 	PublishACK();
 	
 	delay(1);
-	return true;
 }
 
 void ESPMetRED::callback(char* topic, byte* payload, unsigned int length)
