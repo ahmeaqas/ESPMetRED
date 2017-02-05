@@ -54,10 +54,10 @@ private:
 
 public:
 	ESPMetRED();
-	void joinWiFi();
+	boolean joinWiFi();
 	boolean WiFiScanner();
-	void joinMqTT();
-	void keepalive();
+	boolean joinMqTT();
+	boolean keepalive();
 	
 	void callback(char* topic, byte* payload, unsigned int length);
 	void ReturnACK(String Identity);
