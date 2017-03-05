@@ -1,3 +1,6 @@
+0.6.1
+   * Compatibility with Arduino IDE Library Manager
+   
 0.6.0
    * ESPMetRed Library merged in PubSubClient library
    * No need to include PubSubClient library in Arduino IDE Sketch
