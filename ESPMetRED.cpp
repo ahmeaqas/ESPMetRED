@@ -34,7 +34,6 @@ ESPMetRED::ESPMetRED() {
 	setServer(MQTT_SERVER, 1883);
 	setCallback([this] (char* topic, byte* payload, unsigned int length) { this->mqttin(topic, payload, length); });
 	Serial.println("ESP8266 started");
-	// OTA();
 	NTP = ReadSPIFFS("Time");
 	Serial.print("Time: ");
 	Serial.println(NTP);
@@ -673,15 +672,7 @@ void ESPMetRED::keepalive()
 		Time_Log = millis();
 		WriteSPIFFS("Time", _Time);
 	}
-	// if ((WiFi.status() == WL_CONNECTED) && (!OTA_Begin))
-	// {
-		// OTA_Begin = true;
-		// OTA();
-	// }
-	// if ((WiFi.status() == WL_CONNECTED) && (OTA_Begin))
-	// {
-		// ArduinoOTA.handle();
-	// }
+
 	loop();
 	Timer();
 	
