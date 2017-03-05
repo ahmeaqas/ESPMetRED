@@ -1,5 +1,4 @@
 #include <ESP8266WiFi.h>
-#include <PubSubClient.h>
 #include <ESP8266httpUpdate.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
