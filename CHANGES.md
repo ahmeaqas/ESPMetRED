@@ -1,9 +1,9 @@
 0.6.0
-	* ESPMetRed Library merged in PubSubClient library
-		* No need to include PubSubClient library in Arduino IDE Sketch
+   * ESPMetRed Library merged in PubSubClient library
+   * No need to include PubSubClient library in Arduino IDE Sketch
 
 0.5.1
-	* Added support for gpio over-ride (An over-ride from regular schedule)
+   * Added support for gpio over-ride (An over-ride from regular schedule)
 
 0.5
    * Add function to Encode data to JSON String
