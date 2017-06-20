@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <PubSubClient.h>
 #include <ESP8266httpUpdate.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
@@ -17,7 +18,7 @@ const char* MQTT_PASSWORD = "Password";
 ESPMetRED client;
 
 void setup() {
-  client.setcallback(callback);
+  client.setCallback(callback);
 }
 
 void callback(String mqtt_payload)
