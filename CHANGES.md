@@ -1,3 +1,6 @@
+0.6.2
+   * Revert back PubSubClient library merger
+
 0.6.1
    * Compatibility with Arduino IDE Library Manager
    
