@@ -13,7 +13,7 @@ This library can be used to control ESP8266 nodes from Node-Red. Just burn Examp
 - Save variables in Flash memory
 - Retrieve variables from Flash memory
 - Preserve and restore GPIO state i.e. HIGH or LOW
-- Over the Air (OTA) update directly from Arduino IDE
+- Over the Air (OTA) update directly from Arduino IDE <strong>[ NEW ]</strong>
 - More are comming soon!!
 
 <strong>Available versions:</strong>
