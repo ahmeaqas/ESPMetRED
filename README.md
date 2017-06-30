@@ -2,7 +2,7 @@
 A blend of ESP8266 MQTT and Node-Red
 - Arduino IDE compatible
 - User friendly API
-- For more information visit my <a href="https://hobbytronics.com.pk/esp-met-red/">blog post</a>
+- For more information visit <a href="https://hobbytronics.com.pk/esp-met-red/">ESPMETRED AN ARDUINO IDE COMPATIBLE LIBRARY TO COMMUNICATE ESP8266 AND NODE-RED VIA MQTT</a>
 
 This library can be used to control ESP8266 nodes from Node-Red. Just burn Examples/ESPMetRED/ESPMetRED.ino to your ESP8266 using Arduino IDE and you are ready to go.
 
