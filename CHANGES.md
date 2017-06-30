@@ -1,3 +1,6 @@
+0.6.3
+   * Now push Over The Air Update (OTA) directly from Arduino IDE
+   
 0.6.2
    * Revert back PubSubClient library merger
 
