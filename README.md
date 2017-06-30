@@ -13,10 +13,10 @@ This library can be used to control ESP8266 nodes from Node-Red. Just burn Examp
 - Save variables in Flash memory
 - Retrieve variables from Flash memory
 - Preserve and restore GPIO state i.e. HIGH or LOW
-- Over the Air (OTA) update
+- Over the Air (OTA) update directly from Arduino IDE <strong>[ NEW ]</strong>
 - More are comming soon!!
 
 <strong>Available versions:</strong>
 
-- <a href="https://github.com/hobbytronicspk/ESPMetRED.git">ESPMetRED 0.6.2</a>
-- <a href="https://github.com/hobbytronicspk/ESPMetRED/blob/master/CHANGES.md">Change log</a>
+- <a href="https://github.com/HobbytronicsPK/ESPMetRED/tree/Experimental">ESPMetRED 0.6.3</a>
+- <a href="https://github.com/HobbytronicsPK/ESPMetRED/blob/Experimental/CHANGES.md">Change log</a>

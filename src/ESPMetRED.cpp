@@ -30,6 +30,9 @@ ESPMetRED::ESPMetRED()
 	NTP = ReadSPIFFS("Time");
 	Serial.print("Time: ");
 	Serial.println(NTP);
+	
+	ArduinoOTA.setHostname(CLIENT_ID);
+	ArduinoOTA.setPassword((const char *)MQTT_PASSWORD);
 }
 
 void ESPMetRED::joinWiFi()
@@ -88,6 +91,20 @@ void ESPMetRED::keepalive()
 	{
 		joinMqTT();
 	}
+	
+	if(WiFi.status() == WL_CONNECTED)
+	{
+		if (!OTA_Begin)
+		{
+			OTA_Begin = true;
+			ArduinoOTA.begin();
+		}
+		else
+		{
+			ArduinoOTA.handle();
+		}
+	}
+	
 	if ((millis() - Time_Log) > 300000UL)
 	{
 		Time_Log = millis();
@@ -143,12 +160,12 @@ void ESPMetRED::callback(char* topic, byte* payload, unsigned int length)
 			ReturnACK(String(CLIENT_ID) + " [" + Payload + " OK]");
 			WriteSPIFFS("Time", _Time);
 		}
-		else if (Payload == "OTA")
-		{
-			Publish("debug", String(CLIENT_ID) + " [" + Payload + " OK]");
-			String Link = "/" + String(CLIENT_ID) + ".bin";
-			ESPhttpUpdate.update(MQTT_SERVER, 82, Link);
-		}
+		// else if (Payload == "OTA")
+		// {
+			// Publish("debug", String(CLIENT_ID) + " [" + Payload + " OK]");
+			// String Link = "/" + String(CLIENT_ID) + ".bin";
+			// ESPhttpUpdate.update(MQTT_SERVER, 82, Link);
+		// }
 		else if (Payload == "REBOOT")
 		{
 			Publish("debug", String(CLIENT_ID) + " [" + Payload + " OK]");
