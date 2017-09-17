@@ -9,6 +9,8 @@ This library can be used to control ESP8266 nodes from Node-Red. Just burn Examp
 <strong>Features:</strong>
 - Back and forth communication between ESP8266 and Node-Red using MQTT protocol
 - Auto connect to WiFi or MQTT server in case of failure
+- Support Static IP address configurations
+- Deep sleep support (no connection problem on waking up, connects within 2 seconds)
 - Sudo Timer for Timely operations, update Sunrise or Sunset data and preserve it in flash memory
 - Save variables in Flash memory
 - Retrieve variables from Flash memory
@@ -16,6 +18,13 @@ This library can be used to control ESP8266 nodes from Node-Red. Just burn Examp
 - Over the Air (OTA) update
 - More are comming soon!!
 
+
+<strong>Available versions:</strong>
+
+- <a href="https://github.com/hobbytronicspk/ESPMetRED.git">ESPMetRED 0.6.3</a>
+- <a href="https://github.com/hobbytronicspk/ESPMetRED/blob/master/CHANGES.md">Change log</a>
+
 #### Available versions:
 ##### Latest Release: [https://github.com/HobbytronicsPK/ESPMetRED/releases/latest](https://github.com/HobbytronicsPK/ESPMetRED/releases/latest/)
-##### Download: [https://github.com/HobbytronicsPK/ESPMetRED/archive/v.0.6.2.zip](https://github.com/HobbytronicsPK/ESPMetRED/archive/v.0.6.2.zip)
+##### Download: [https://github.com/HobbytronicsPK/ESPMetRED/archive/v.0.6.3.zip](https://github.com/HobbytronicsPK/ESPMetRED/archive/v.0.6.2.zip)
+

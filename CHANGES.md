@@ -1,3 +1,9 @@
+0.6.3
+   * Initialize WiFi with Static IP Address (see deep_sleep example)
+   * Connect to WiFi netwrok within 2 seconds after waking from Deep sleep
+   * No WiFi connections problem associated with static ip after waking from deep sleep
+   * Change OTA update port by defining it's value e.g. #define OTA_PORT XX where XX is your desired port
+   
 0.6.2
    * Revert back PubSubClient library merger
 

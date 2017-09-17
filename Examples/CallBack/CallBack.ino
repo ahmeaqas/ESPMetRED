@@ -1,9 +1,3 @@
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-#include <ESP8266httpUpdate.h>
-#include <ESP8266HTTPClient.h>
-#include <ArduinoJson.h>
-#include <FS.h>
 #include <ESPMetRED.h>
 
 const char* MQTT_PUBLISH_TOPIC = "ESPMetRED/OUT";

@@ -15,6 +15,9 @@
 #include <ArduinoJson.h>
 #include <FS.h>
 
+#include <ESP8266httpUpdate.h>
+#include <ESP8266HTTPClient.h>
+
 #ifdef ESP8266
 #include <functional>
 #define MQTT_CALLBACK_SIGN std::function<void(String)> mqttCallback
@@ -27,11 +30,18 @@
 	#define DB_DEFAULT_VALUE 0
 #endif
 
+#ifdef OTA_PORT
+#else
+	#define OTA_PORT 80
+#endif
+
 class ESPMetRED {
 private:
 	//WiFi
 	unsigned long connection_watchdog = 0;
 	boolean OTA_Begin = false;
+	int dhcp_mode = 0;
+	int boot_up = 0;
 	
 	//Time management
 	long NTP = 0;
@@ -54,9 +64,11 @@ private:
 
 public:
 	ESPMetRED();
+	ESPMetRED(IPAddress ip, IPAddress gateway, IPAddress subnet, IPAddress dns);
 	void joinWiFi();
 	boolean WiFiScanner();
 	void joinMqTT();
+	boolean stMqTT();
 	void keepalive();
 	
 	void callback(char* topic, byte* payload, unsigned int length);

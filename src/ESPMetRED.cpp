@@ -32,16 +32,39 @@ ESPMetRED::ESPMetRED()
 	Serial.println(NTP);
 }
 
+ESPMetRED::ESPMetRED(IPAddress ip, IPAddress gateway, IPAddress subnet, IPAddress dns)
+{ 
+	dhcp_mode = 1;
+	Serial.begin(115200);
+	SPIFFS.begin();
+	WiFi.persistent(false);
+	WiFi.mode(WIFI_STA);
+	WiFi.config(ip, gateway, subnet, dns);
+	MQTTClient.setServer(MQTT_SERVER, 1883);
+	MQTTClient.setCallback([this] (char* topic, byte* payload, unsigned int length) { this->callback(topic, payload, length); });
+	Serial.println("ESP8266 started");
+	NTP = ReadSPIFFS("Time");
+	Serial.print("Time: ");
+	Serial.println(NTP);
+	WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+}
+
 void ESPMetRED::joinWiFi()
 {
-	boolean access_point_check = WiFiScanner();
-	if ((access_point_check) && (WiFi.status() != WL_CONNECTED))
+	if(dhcp_mode == 1)
 	{
-		Serial.println("Connecting to WiFi Access Point");
 		WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-	} else if ((access_point_check) && (WiFi.status() == WL_CONNECTED))
-	{
-		Serial.println("WiFi connected");
+	}
+	else{
+		boolean access_point_check = WiFiScanner();
+		if ((access_point_check) && (WiFi.status() != WL_CONNECTED))
+		{
+			Serial.println("Connecting to WiFi Access Point");
+			WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+		} else if ((access_point_check) && (WiFi.status() == WL_CONNECTED))
+		{
+			Serial.println("WiFi connected");
+		}
 	}
 }
 
@@ -78,16 +101,22 @@ void ESPMetRED::joinMqTT()
 	}
 }
 
+boolean ESPMetRED::stMqTT()
+{
+	return(MQTTClient.connected());
+}
+
 void ESPMetRED::keepalive()
 {
 	if (((millis() - connection_watchdog) > 12000UL) && (WiFi.status() != WL_CONNECTED))
 	{
 		connection_watchdog = millis();
 		joinWiFi();
-	} else if (((millis() - connection_watchdog) > 12000UL) && (WiFi.status() == WL_CONNECTED) && (!MQTTClient.connected()))
+	} else if (((millis() - connection_watchdog) > 1000UL) && (WiFi.status() == WL_CONNECTED) && (!MQTTClient.connected()))
 	{
 		joinMqTT();
 	}
+	
 	if ((millis() - Time_Log) > 300000UL)
 	{
 		Time_Log = millis();
@@ -147,7 +176,7 @@ void ESPMetRED::callback(char* topic, byte* payload, unsigned int length)
 		{
 			Publish("debug", String(CLIENT_ID) + " [" + Payload + " OK]");
 			String Link = "/" + String(CLIENT_ID) + ".bin";
-			ESPhttpUpdate.update(MQTT_SERVER, 82, Link);
+			ESPhttpUpdate.update(MQTT_SERVER, OTA_PORT, Link);
 		}
 		else if (Payload == "REBOOT")
 		{
