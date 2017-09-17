@@ -9,8 +9,9 @@
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-
 #include <PubSubClient.h>
+#include <ESP8266httpUpdate.h>
+#include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 #include <FS.h>
 
@@ -78,6 +79,7 @@ public:
 	void Publish(String message);
 	void Publish(const char* topic, String message);
 	
+	void OTA();
 	String networkIP();
 	void systemInfo();
 	
