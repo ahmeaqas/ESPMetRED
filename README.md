@@ -19,6 +19,6 @@ This library can be used to control ESP8266 nodes from Node-Red. Just burn Examp
 - More are comming soon!!
 
 #### Available versions:
+##### Change Log: [September 17, 2017](https://github.com/hobbytronicspk/ESPMetRED/blob/master/CHANGES.md)
 ##### Latest Release: [https://github.com/HobbytronicsPK/ESPMetRED/releases/latest](https://github.com/HobbytronicsPK/ESPMetRED/releases/latest/)
 ##### Download: [https://github.com/HobbytronicsPK/ESPMetRED/archive/v.0.6.3.zip](https://github.com/HobbytronicsPK/ESPMetRED/archive/v.0.6.3.zip)
-##### Change Log: [September 17, 2017](https://github.com/hobbytronicspk/ESPMetRED/blob/master/CHANGES.md)
